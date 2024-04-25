@@ -1,12 +1,13 @@
 apiVersion: kafka.strimzi.io/v1beta2
 kind: Kafka
 metadata:
-  name: my-cluster
+  name: kafka-cluster-one
   annotations:
     strimzi.io/node-pools: enabled
 spec:
   kafka:
-    version: 3.6.1
+    version: 3.7.0
+    replicas: 1
     listeners:
       - name: plain
         port: 9092
@@ -22,7 +23,11 @@ spec:
       transaction.state.log.min.isr: 2
       default.replication.factor: 3
       min.insync.replicas: 2
-      inter.broker.protocol.version: "3.7"
+      inter.broker.protocol.version: "3.7"    
+    rack:
+      topologyKey: topology.kubernetes.io/zone
+    config:
+      replica.selector.class: org.apache.kafka.common.replica.RackAwareReplicaSelector
   zookeeper:
     replicas: 3
     storage:
