@@ -5,6 +5,15 @@ metadata:
 spec:
   version: 3.7.0
   replicas: 1
+  template:
+    connectContainer:
+      env:
+        - name: OTEL_SERVICE_NAME
+          value: kafka-mirror-maker2
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: "http://localhost:4317"
+  tracing:
+    type: opentelemetry
   connectCluster: "kafka-cluster-two"
   clusters:
   - alias: "kafka-cluster-one"

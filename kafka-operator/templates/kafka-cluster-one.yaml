@@ -23,11 +23,7 @@ spec:
       transaction.state.log.min.isr: 2
       default.replication.factor: 3
       min.insync.replicas: 2
-      inter.broker.protocol.version: "3.7"    
-    rack:
-      topologyKey: topology.kubernetes.io/zone
-    config:
-      replica.selector.class: org.apache.kafka.common.replica.RackAwareReplicaSelector
+      inter.broker.protocol.version: "3.7"
   zookeeper:
     replicas: 3
     storage:
